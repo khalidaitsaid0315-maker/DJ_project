@@ -1,183 +1,61 @@
-# Projet E-Commerce Django
+# Projet E-commerce Django - DJ_project
 
 ## Description
-Application web e-commerce développée avec le framework Django dans le cadre du cours
-Développement Web Python 2026 (Mr. BOUSSELHAM).
-Le projet couvre la mise en place d'une architecture MVT complète avec gestion
-des produits, catégories, base de données et interface d'administration.
+[cite_start]Ce projet a été développé au cours de deux ateliers pratiques portant sur le framework Django[cite: 257, 2]. [cite_start]Il met en œuvre une application de gestion de produits et de catégories en utilisant l'architecture MVT (Model-View-Template)[cite: 278].
 
 ---
 
-## Atelier 1 — Introduction à Django et architecture MVT
+##  Atelier 1 : Fondamentaux et Configuration
+L'objectif de cet atelier était de mettre en place l'environnement de développement et de comprendre le flux de base (URL -> Vue -> Template).
 
-Cet atelier introduit le framework Django et son architecture MVT (Model-View-Template).
-Il couvre la mise en place de l'environnement de développement, la création du projet
-`ecommerce` et de l'application `products`, la configuration des URLs, la création de
-vues simples et les premiers templates HTML.
+### [cite_start]1. Préparation de l'Environnement [cite: 298-314]
+* [cite_start]**Installation des outils** : Mise à jour de `pip` et installation de `virtualenv`[cite: 300, 303].
+* [cite_start]**Environnement virtuel** : Création du répertoire `ecommerce_project` et activation de l'environnement virtuel `myenv`[cite: 305, 309, 312].
+* [cite_start]**Installation de Django** : Installation du framework via la commande `pip install django`[cite: 314].
 
-**Compétences abordées :**
-- Installation de Django et création d'un environnement virtuel
-- Structure d'un projet Django
-- Architecture MVT (Model - View - Template)
-- Création de vues et routage URL
-- Templates HTML de base
+### [cite_start]2. Initialisation du Projet [cite: 315-346]
+* [cite_start]**Création du projet** : Génération de la structure de base nommée `ecommerce`[cite: 317].
+* [cite_start]**Vérification** : Test du bon fonctionnement avec le serveur de développement (`python manage.py runserver`)[cite: 340].
+* [cite_start]**Structure** : Compréhension des fichiers clés tels que `settings.py` (configuration), `urls.py` (routage) et `manage.py` (point d'entrée) [cite: 334-337].
 
----
+### [cite_start]3. Création de l'Application [cite: 349-386]
+* [cite_start]**Initialisation** : Création de l'application `products` pour gérer la logique métier des articles[cite: 353].
+* [cite_start]**Configuration** : Déclaration de l'application dans la liste `INSTALLED_APPS` du fichier `settings.py`[cite: 374, 383].
 
-## Atelier 2 — Gestion et récupération de données
-
-Cet atelier approfondit l'interaction avec la base de données via l'ORM de Django.
-Il couvre la création des modèles `Product` et `Category`, les migrations, les relations
-entre modèles (ForeignKey), l'interface d'administration, les templates dynamiques,
-la gestion des images avec Pillow, et la connexion à MySQL.
-
-**Compétences abordées :**
-- Modèles Django et ORM
-- Migrations (`makemigrations` / `migrate`)
-- Relations entre tables (ForeignKey)
-- Interface d'administration Django
-- Templates dynamiques (liste & détail)
-- Gestion des fichiers médias (Pillow)
-- Connexion à une base de données MySQL
+### [cite_start]4. Vues et Routage Initiaux [cite: 389-447]
+* [cite_start]**Vues** : Création des fonctions `product_list` et `product_detail` dans `views.py` pour rendre les templates [cite: 391-395].
+* [cite_start]**Routage** : Configuration des fichiers `urls.py` au niveau du projet et de l'application pour mapper les adresses[cite: 396, 403].
+* [cite_start]**Templates** : Création d'un dossier `templates` et des premiers fichiers HTML pour valider l'affichage[cite: 410, 427, 430].
 
 ---
 
-## Structure du projet
+##  Atelier 2 : Modélisation et Persistance des Données
+Cet atelier s'est concentré sur l'interaction avec les bases de données via l'ORM de Django, la gestion des médias et l'utilisation de MySQL.
 
-ecommerce_project/
-├── ecommerce/
-│   ├── __init__.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── products/
-│   ├── migrations/
-│   │   └── 0001_initial.py
-│   ├── templates/
-│   │   └── products/
-│   │       ├── product_list.html
-│   │       ├── product_detail.html
-│   │       ├── category_list.html
-│   │       └── category_detail.html
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── tests.py
-│   ├── urls.py
-│   └── views.py
-├── images/
-│   └── products/
-├── myenv/
-├── db.sqlite3
-└── manage.py
+### [cite_start]1. Modélisation et ORM [cite: 3-28]
+* [cite_start]**Modèle Product** : Définition des attributs (nom, prix, image, stock) dans `models.py` [cite: 19, 22-26].
+* [cite_start]**Modèle Category** : Création d'un modèle pour classer les articles[cite: 44, 54].
+* [cite_start]**Relations** : Mise en place d'une relation plusieurs-à-un (`ForeignKey`) entre les produits et les catégories[cite: 49, 68, 70].
 
----
+### [cite_start]2. Migrations [cite: 29-42, 73-77]
+* [cite_start]**Préparation** : Utilisation de `makemigrations` pour générer les fichiers de modification[cite: 33, 74].
+* [cite_start]**Application** : Synchronisation avec la base de données via la commande `migrate`[cite: 39, 76].
 
-## Modèles
+### [cite_start]3. Interface d'Administration [cite: 78-89]
+* [cite_start]**Enregistrement** : Ajout des modèles `Category` et `Product` dans `admin.py`[cite: 82].
+* [cite_start]**Personnalisation** : Utilisation des décorateurs `@admin.register` et configuration de l'affichage avec `list_display`, `list_filter` et `search_fields` [cite: 83, 85-89].
 
-### Category
-| Champ        | Type                          |
-|--------------|-------------------------------|
-| name         | CharField(max_length=100)     |
-| description  | TextField(blank=True)         |
-| created_at   | DateTimeField(auto_now_add)   |
+### [cite_start]4. Logique Métier et Templates Dynamiques [cite: 90-176]
+* [cite_start]**Récupération des données** : Utilisation de `Product.objects.all()` et `get_object_or_484` pour extraire les données[cite: 96, 99].
+* [cite_start]**Accès aux relations** : Exploitation de `related_name='products'` pour lister les produits d'une catégorie spécifique[cite: 107].
+* [cite_start]**Affichage** : Utilisation de boucles `{% for %}` et de variables de template pour un affichage dynamique[cite: 130, 150, 164, 171].
 
-### Product
-| Champ        | Type                                    |
-|--------------|-----------------------------------------|
-| name         | CharField(max_length=255)               |
-| description  | TextField                               |
-| price        | DecimalField(max_digits=10, decimals=2) |
-| stock        | PositiveIntegerField                    |
-| image        | ImageField(upload_to='products/images') |
-| category     | ForeignKey(Category)                    |
-| created_at   | DateTimeField(auto_now_add)             |
+### [cite_start]5. Gestion des Images [cite: 177-217]
+* [cite_start]**Dépendance** : Installation de la bibliothèque `Pillow`[cite: 180].
+* [cite_start]**Configuration** : Définition de `MEDIA_URL` et `MEDIA_ROOT` dans `settings.py` pour stocker les fichiers sur le serveur [cite: 194-203].
+* [cite_start]**Routage média** : Ajout de la configuration statique dans `urls.py` principal[cite: 211, 217].
 
----
-
-## URLs disponibles
-
-| URL                        | Vue             | Nom             |
-|----------------------------|-----------------|-----------------|
-| /products/                 | product_list    | product_list    |
-| /products/<int:id>/        | product_detail  | product_detail  |
-| /products/categories/      | category_list   | category_list   |
-| /products/category/<id>/   | category_detail | category_detail |
-
----
-
-## Installation
-
-1. Cloner le projet et entrer dans le dossier
-
-    cd ecommerce_project
-
-2. Créer et activer l'environnement virtuel
-
-    virtualenv myenv
-    myenv\scripts\activate
-
-3. Installer les dépendances
-
-    pip install django
-    pip install pillow
-    pip install mysqlclient
-
-4. Appliquer les migrations
-
-    python manage.py makemigrations
-    python manage.py migrate
-
-5. Créer un super utilisateur
-
-    python manage.py createsuperuser
-
-6. Lancer le serveur
-
-    python manage.py runserver
-
----
-
-## Configuration MySQL (optionnel)
-
-Dans settings.py, remplacer la configuration DATABASES par :
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'db_ecommerce',
-            'USER': 'root',
-            'PASSWORD': '',
-            'HOST': 'localhost',
-            'PORT': '3306',
-        }
-    }
-
----
-
-## Configuration des médias
-
-Dans settings.py :
-
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
-
----
-
-## Accès
-
-| Page            | URL                             |
-|-----------------|---------------------------------|
-| Liste produits  | http://127.0.0.1:8000/products/ |
-| Interface admin | http://127.0.0.1:8000/admin/    |
-
----
-
-## Technologies utilisées
-
-- Python 3.x
-- Django
-- SQLite3 / MySQL
-- Pillow
-- HTML / Django Template Language
+### [cite_start]6. Connexion à MySQL [cite: 222-254]
+* [cite_start]**Base de données** : Création de la base `db_ecommerce` via phpMyAdmin (XAMPP/Wampserver)[cite: 226, 227].
+* [cite_start]**Configuration Django** : Modification du dictionnaire `DATABASES` pour pointer vers le moteur MySQL [cite: 228, 231-249].
+* [cite_start]**Connecteur** : Installation de `mysqlclient` pour permettre la communication entre Python et MySQL[cite: 251, 252].
