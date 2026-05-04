@@ -94,12 +94,20 @@
             <!-- Actions -->
             {% if product.stock > 0 %}
                 <div class="d-grid gap-2">
-                    <button class="btn btn-lg btn-primary-gradient" style="padding: 15px; font-size: 1.1rem;">
-                        <i class="fas fa-shopping-cart"></i> Ajouter au panier
-                    </button>
-                    <button class="btn btn-lg btn-outline-primary" style="padding: 15px; font-size: 1.1rem; border-radius: 8px;">
-                        <i class="fas fa-heart"></i> Ajouter aux favoris
-                    </button>
+                    <form method="post" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{% url 'cart' %}">
+                        <button type="submit" class="btn btn-lg btn-primary-gradient w-100" style="padding: 15px; font-size: 1.1rem;">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                        </button>
+                    </form>
+                    <form method="post" action="{% url 'add_to_favorites' product.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{% url 'favorites' %}">
+                        <button type="submit" class="btn btn-lg btn-outline-primary w-100" style="padding: 15px; font-size: 1.1rem; border-radius: 8px;">
+                            <i class="fas fa-heart"></i> Ajouter aux favoris
+                        </button>
+                    </form>
                 </div>
             {% else %}
                 <div class="alert alert-warning">
