@@ -22,6 +22,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -31,6 +32,14 @@ ALLOWED_HOSTS = os.environ.get(
     "DJANGO_ALLOWED_HOSTS",
     "localhost,127.0.0.1"
 ).split(",")
+=======
+SECRET_KEY = 'django-insecure-6f&@dn&ao6-i^=q*41v5#26p3r)_1_9pg0=n-43p3a9vfj!81o'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = []
+>>>>>>> d1f55c41fea051abfb132d571c3a2a9c0467cee9
 
 
 # Application definition
@@ -47,7 +56,10 @@ INSTALLED_APPS = [
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+<<<<<<< HEAD
     'whitenoise.middleware.WhiteNoiseMiddleware',
+=======
+>>>>>>> d1f55c41fea051abfb132d571c3a2a9c0467cee9
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -81,7 +93,9 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<<< HEAD:ecommerce/ecommerce/settings.py
         'NAME': os.environ.get('MYSQL_DATABASE', 'DB_ECOMMERCE'),
         'USER': os.environ.get('MYSQL_USER', 'django'),
         'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'django'),
@@ -90,6 +104,21 @@ DATABASES = {
         'OPTIONS': {
             'charset': 'utf8mb4',
         }
+========
+        'NAME': os.environ.get('MYSQL_DATABASE', 'db_ecommerce'),
+        'USER': os.environ.get('MYSQL_USER', 'root'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD', ''),
+        'HOST': os.environ.get('MYSQL_HOST', '127.0.0.1'),
+        'PORT': os.environ.get('MYSQL_PORT', '3306'),
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+>>>>>>>> d1f55c41fea051abfb132d571c3a2a9c0467cee9:ecommerce/settings.py
+=======
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+>>>>>>> d1f55c41fea051abfb132d571c3a2a9c0467cee9
     }
 }
 
@@ -129,8 +158,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+<<<<<<< HEAD
+<<<<<<<< HEAD:ecommerce/ecommerce/settings.py
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+========
+>>>>>>>> d1f55c41fea051abfb132d571c3a2a9c0467cee9:ecommerce/settings.py
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+=======
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+>>>>>>> d1f55c41fea051abfb132d571c3a2a9c0467cee9
 
 # Auth settings
 LOGIN_REDIRECT_URL = 'profile'

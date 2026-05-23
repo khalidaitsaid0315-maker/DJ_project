@@ -1,5 +1,6 @@
 services:
   db:
+<<<<<<< HEAD
     image: mysql:8.0
     container_name: mysql-db
     restart: unless-stopped
@@ -8,10 +9,19 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+=======
+    image: mysql
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: DB_ECOMMERCE
+>>>>>>> d1f55c41fea051abfb132d571c3a2a9c0467cee9
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+<<<<<<< HEAD
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$${MYSQL_ROOT_PASSWORD} || exit 1"]
       interval: 10s
@@ -32,6 +42,8 @@ services:
       db:
         condition: service_healthy
     command: python manage.py runserver 0.0.0.0:8000
+=======
+>>>>>>> d1f55c41fea051abfb132d571c3a2a9c0467cee9
 
 volumes:
   db_data:
