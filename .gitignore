@@ -11,5 +11,12 @@ sqlite_backup.json
 .venv/
 venv/
 myenv/
+**/.venv/
+**/venv/
+**/myenv/
+**/__pycache__/
+**/staticfiles/
+*.log
 
 Microsoft/
+**/Microsoft/
