@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Products</title>
+  </head>
+  <body>
+    <h1>Products</h1>
+    <ul>
+      {% for p in products %}
+        <li>
+          {{ p.name }} — {{ p.price }}
+          [<a href="{% url 'executer:execute_product' p.id %}">execute</a>]
+        </li>
+      {% empty %}
+        <li>No products found.</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

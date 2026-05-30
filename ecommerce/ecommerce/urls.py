@@ -12,6 +12,8 @@ urlpatterns = [
     
     # URLs de l'application products
     path('products/', include('products.urls')),
+    # URLs de l'application executer
+    path('executer/', include('executer.urls')),
     
     # URLs de l'application accounts (inscription, profil)
     path('accounts/', include('accounts.urls')),
